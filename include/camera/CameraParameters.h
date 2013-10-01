@@ -908,8 +908,15 @@ public:
 
     static const char KEY_SHARPNESS[];
     static const char KEY_MAX_SHARPNESS[];
+
+#if defined(SAMSUNG_CAMERA_LEGACY) || defined(QCOM_LEGACY_CAM_PARAMS)
+    static const char KEY_MIN_SHARPNESS[];
+    static const char KEY_MIN_CONTRAST[];
+    static const char KEY_MIN_SATURATION[];
+#endif
     static const char KEY_CONTRAST[];
     static const char KEY_MAX_CONTRAST[];
+
     static const char KEY_SATURATION[];
     static const char KEY_MAX_SATURATION[];
 
@@ -966,6 +973,28 @@ public:
     // Values for HDR settings.
     static const char HDR_ENABLE[];
     static const char HDR_DISABLE[];
+
+#if defined(QCOM_HARDWARE) || defined(SAMSUNG_CAMERA_LEGACY)
+    static const char FOCUS_MODE_FACEDETECT[];
+    static const char FOCUS_MODE_TOUCHAF[];
+    static const char ISO_50[];
+    static const char KEY_ANTI_SHAKE_MODE[];
+    static const char KEY_AUTO_CONTRAST[];
+    static const char KEY_BEAUTY_MODE[];
+    static const char KEY_BLUR_MODE[];
+    static const char KEY_VINTAGE_MODE[];
+    static const char KEY_WDR_MODE[];
+    static const char VINTAGE_MODE_BNW[];
+    static const char VINTAGE_MODE_COOL[];
+    static const char VINTAGE_MODE_NORMAL[];
+    static const char VINTAGE_MODE_OFF[];
+    static const char VINTAGE_MODE_WARM[];
+    static const char SCENE_MODE_DAWN[];
+    static const char SCENE_MODE_DUSKDAWN[];
+    static const char SCENE_MODE_FALL[];
+    static const char SCENE_MODE_FALL_COLOR[];
+    static const char SCENE_MODE_TEXT[];
+#endif
 
    // Values for Redeye Reduction settings.
    // static const char REDEYE_REDUCTION_ENABLE[];

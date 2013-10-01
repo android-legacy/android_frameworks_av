@@ -99,7 +99,7 @@ const char CameraParameters::KEY_SUPPORTED_SCENE_MODES[] = "scene-mode-values";
 #ifdef QCOM_HARDWARE
 const char CameraParameters::KEY_SCENE_DETECT[] = "scene-detect";
 const char CameraParameters::KEY_SUPPORTED_SCENE_DETECT[] = "scene-detect-values";
-#endif QCOM_HARDWARE
+#endif
 const char CameraParameters::KEY_FLASH_MODE[] = "flash-mode";
 const char CameraParameters::KEY_SUPPORTED_FLASH_MODES[] = "flash-mode-values";
 const char CameraParameters::KEY_FOCUS_MODE[] = "focus-mode";
@@ -389,13 +389,21 @@ const char CameraParameters::HISTOGRAM_DISABLE[] = "disable";
 //Values for Skin Tone Enhancement Modes
 const char CameraParameters::SKIN_TONE_ENHANCEMENT_ENABLE[] = "enable";
 const char CameraParameters::SKIN_TONE_ENHANCEMENT_DISABLE[] = "disable";
-
-const char CameraParameters::KEY_SHARPNESS[] = "sharpness";
+#if defined(SAMSUNG_CAMERA_LEGACY) || defined(QCOM_LEGACY_CAM_PARAMS)
+const char CameraParameters::KEY_MIN_SHARPNESS[] = "sharpness-min";
+const char CameraParameters::KEY_MIN_CONTRAST[] = "contrast-min";
+const char CameraParameters::KEY_MIN_SATURATION[] = "saturation-min";
+const char CameraParameters::KEY_MAX_SHARPNESS[] = "sharpness-max";
+const char CameraParameters::KEY_MAX_CONTRAST[] = "contrast-max";
+const char CameraParameters::KEY_MAX_SATURATION[] = "saturation-max";
+#else
 const char CameraParameters::KEY_MAX_SHARPNESS[] = "max-sharpness";
-const char CameraParameters::KEY_CONTRAST[] = "contrast";
 const char CameraParameters::KEY_MAX_CONTRAST[] = "max-contrast";
-const char CameraParameters::KEY_SATURATION[] = "saturation";
 const char CameraParameters::KEY_MAX_SATURATION[] = "max-saturation";
+#endif
+const char CameraParameters::KEY_SHARPNESS[] = "sharpness";
+const char CameraParameters::KEY_CONTRAST[] = "contrast";
+const char CameraParameters::KEY_SATURATION[] = "saturation";
 
 //Values for DENOISE
 const char CameraParameters::DENOISE_OFF[] = "denoise-off";
@@ -435,6 +443,32 @@ const char CameraParameters::ZSL_ON[] = "on";
 const char CameraParameters::AE_BRACKET_HDR_OFF[] = "Off";
 const char CameraParameters::AE_BRACKET_HDR[] = "HDR";
 const char CameraParameters::AE_BRACKET[] = "AE-Bracket";
+
+const char CameraParameters::LOW_POWER[] = "Low_Power";
+const char CameraParameters::NORMAL_POWER[] = "Normal_Power";
+
+#if defined(QCOM_HARDWARE) || defined(SAMSUNG_CAMERA_LEGACY)
+const char CameraParameters::FOCUS_MODE_FACEDETECT[] = "facedetect";
+const char CameraParameters::FOCUS_MODE_TOUCHAF[] = "touchaf";
+const char CameraParameters::ISO_50[] = "ISO50";
+const char CameraParameters::KEY_ANTI_SHAKE_MODE[] = "antishake";
+const char CameraParameters::KEY_AUTO_CONTRAST[] = "auto-contrast";
+const char CameraParameters::KEY_BEAUTY_MODE[] = "beauty";
+const char CameraParameters::KEY_BLUR_MODE[] = "blur";
+const char CameraParameters::KEY_VINTAGE_MODE[] = "vintagemode";
+const char CameraParameters::KEY_WDR_MODE[] = "wdr";
+const char CameraParameters::VINTAGE_MODE_BNW[] = "bnw";
+const char CameraParameters::VINTAGE_MODE_COOL[] = "cool";
+const char CameraParameters::VINTAGE_MODE_NORMAL[] = "normal";
+const char CameraParameters::VINTAGE_MODE_OFF[] = "off";
+const char CameraParameters::VINTAGE_MODE_WARM[] = "warm";
+const char CameraParameters::SCENE_MODE_DAWN[] = "dusk-dawn";
+const char CameraParameters::SCENE_MODE_DUSKDAWN[] = "dusk-dawn";
+const char CameraParameters::SCENE_MODE_FALL[] = "fall-color";
+const char CameraParameters::SCENE_MODE_FALL_COLOR[] = "fall-color";
+const char CameraParameters::SCENE_MODE_TEXT[] = "text";
+#endif
+
 
 static const char* portrait = "portrait";
 static const char* landscape = "landscape";
