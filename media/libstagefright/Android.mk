@@ -88,6 +88,40 @@ LOCAL_SRC_FILES += \
         FMRadioSource.cpp                 \
         PCMExtractor.cpp
 endif
+ifneq ($(filter caf bfam,$(TARGET_QCOM_AUDIO_VARIANT)),)
+    ifeq ($(BOARD_USES_LEGACY_ALSA_AUDIO),true)
+        ifeq ($(call is-chipset-in-board-platform,msm8960),true)
+            LOCAL_SRC_FILES += LPAPlayerALSA.cpp TunnelPlayer.cpp
+            LOCAL_CFLAGS += -DUSE_TUNNEL_MODE -DUSE_LPA_MODE
+            LOCAL_CFLAGS += -DTUNNEL_MODE_SUPPORTS_AMRWB
+        endif
+        ifeq ($(call is-chipset-in-board-platform,msm8974),true)
+            # If you are using legacy mode on 8974, you will not
+            # go to space today. Also, it probably is broken.
+            LOCAL_SRC_FILES += LPAPlayerALSA.cpp TunnelPlayer.cpp
+            LOCAL_CFLAGS += -DUSE_TUNNEL_MODE -DUSE_LPA_MODE
+        endif
+        ifeq ($(call is-chipset-in-board-platform,msm8660),true)
+            LOCAL_SRC_FILES += LPAPlayer.cpp
+            LOCAL_CFLAGS += -DLEGACY_LPA -DUSE_LPA_MODE
+        endif
+        ifeq ($(call is-chipset-in-board-platform,msm7x27a),true)
+            LOCAL_SRC_FILES += LPAPlayer.cpp
+            LOCAL_CFLAGS += -DLEGACY_LPA -DUSE_LPA_MODE
+        endif
+        ifeq ($(NO_TUNNEL_MODE_FOR_MULTICHANNEL),true)
+            LOCAL_CFLAGS += -DNO_TUNNEL_MODE_FOR_MULTICHANNEL
+        endif
+    endif
+endif
+
+ifneq ($(TARGET_QCOM_MEDIA_VARIANT),)
+LOCAL_C_INCLUDES += \
+        $(TOP)/hardware/qcom/media-$(TARGET_QCOM_MEDIA_VARIANT)/mm-core/inc
+else
+LOCAL_C_INCLUDES += \
+        $(TOP)/hardware/qcom/media/mm-core/inc
+endif
 
 LOCAL_SHARED_LIBRARIES := \
         libbinder \
