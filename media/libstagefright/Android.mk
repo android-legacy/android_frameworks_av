@@ -30,6 +30,7 @@ LOCAL_SRC_FILES:=                         \
         FLACExtractor.cpp                 \
         HTTPBase.cpp                      \
         JPEGSource.cpp                    \
+        LPAPlayerALSA.cpp                 \
         MP3Extractor.cpp                  \
         MPEG2TSWriter.cpp                 \
         MPEG4Extractor.cpp                \
@@ -48,6 +49,7 @@ LOCAL_SRC_FILES:=                         \
         NuMediaExtractor.cpp              \
         OMXClient.cpp                     \
         OMXCodec.cpp                      \
+        ExtendedCodec.cpp                 \
         OggExtractor.cpp                  \
         SampleIterator.cpp                \
         SampleTable.cpp                   \
@@ -58,14 +60,18 @@ LOCAL_SRC_FILES:=                         \
         ThrottledSource.cpp               \
         TimeSource.cpp                    \
         TimedEventQueue.cpp               \
+        TunnelPlayer.cpp                  \
         Utils.cpp                         \
         VBRISeeker.cpp                    \
         WAVExtractor.cpp                  \
+        WAVEWriter.cpp                    \
         WVMExtractor.cpp                  \
         XINGSeeker.cpp                    \
         avc_utils.cpp                     \
         mp4/FragmentedMP4Parser.cpp       \
         mp4/TrackFragment.cpp             \
+        ExtendedExtractor.cpp             \
+        ExtendedUtils.cpp                 \
 
 LOCAL_C_INCLUDES:= \
         $(TOP)/frameworks/av/include/media/stagefright/timedtext \
@@ -87,6 +93,14 @@ ifeq ($(BOARD_USES_STE_FMRADIO),true)
 LOCAL_SRC_FILES += \
         FMRadioSource.cpp                 \
         PCMExtractor.cpp
+endif
+
+ifeq ($(TARGET_QCOM_MEDIA_VARIANT),caf)
+LOCAL_C_INCLUDES += \
+        $(TOP)/hardware/qcom/media-caf/mm-core/inc
+else
+LOCAL_C_INCLUDES += \
+        $(TOP)/hardware/qcom/media/mm-core/inc
 endif
 
 LOCAL_SHARED_LIBRARIES := \
@@ -115,6 +129,7 @@ LOCAL_SHARED_LIBRARIES := \
 
 LOCAL_STATIC_LIBRARIES := \
         libstagefright_color_conversion \
+        libstagefright_mp3dec \
         libstagefright_aacenc \
         libstagefright_matroska \
         libstagefright_timedtext \
@@ -125,20 +140,13 @@ LOCAL_STATIC_LIBRARIES := \
         libFLAC \
         libmedia_helper
 
-ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
-       LOCAL_STATIC_LIBRARIES  += libstagefright_mp3dec
-       LOCAL_SRC_FILES         += ExtendedCodec.cpp ExtendedExtractor.cpp ExtendedUtils.cpp
-       LOCAL_SRC_FILES         += WAVEWriter.cpp
-       LOCAL_SRC_FILES         += LPAPlayerALSA.cpp TunnelPlayer.cpp
+ifeq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS),true)
+       LOCAL_CFLAGS     += -DENABLE_AV_ENHANCEMENTS
 ifneq ($(TARGET_QCOM_MEDIA_VARIANT),)
        LOCAL_C_INCLUDES += $(TOP)/hardware/qcom/media-$(TARGET_QCOM_MEDIA_VARIANT)/mm-core/inc
 else
        LOCAL_C_INCLUDES += $(TOP)/hardware/qcom/media/mm-core/inc
 endif
-endif
-
-ifeq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS),true)
-       LOCAL_CFLAGS     += -DENABLE_AV_ENHANCEMENTS
        LOCAL_SRC_FILES  += ExtendedMediaDefs.cpp
        LOCAL_SRC_FILES  += ExtendedWriter.cpp
 endif #TARGET_ENABLE_AV_ENHANCEMENTS
