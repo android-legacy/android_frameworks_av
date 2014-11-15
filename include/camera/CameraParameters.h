@@ -981,7 +981,55 @@ public:
     static const char KEY_MIN_SATURATION[];
 #endif
 
-    static const char KEY_HISTOGRAM[] ;
+#ifdef SONY_CAM_PARAMS
+    static const char KEY_SONY_ISO[];
+    static const char KEY_SONY_METERING_MODE[];
+    static const char KEY_SONY_VS[];
+    static const char KEY_SONY_MAX_BURST_SHOT_SIZE[];
+    static const char KEY_SONY_BURST_SHOT_VALUES[];
+    static const char KEY_SONY_VS_VALUES[];
+    static const char KEY_SONY_METERING_MODE_VALUES[];
+    static const char KEY_SONY_AE_MODE[];
+    static const char KEY_SONY_AE_MODE_VALUES[];
+    static const char KEY_SONY_ISO_VALUES[];
+    static const char KEY_SONY_IS[];
+    static const char KEY_SONY_IS_VALUES[];
+    static const char KEY_SONY_EXTENSION_VERSION[];
+    static const char KEY_SONY_FOCUS_AREA[];
+    static const char KEY_SONY_FOCUS_AREA_VALUES[];
+    static const char KEY_SONY_MAX_MULTI_FOCUS_NUM[];
+    static const char KEY_SONY_SCENE_DETECT_SUPPORTED[];
+    static const char KEY_SONY_SELECT_FACE_POSITION[] ;
+    static const char KEY_SONY_MAX_VIDEO_STABILIZER_SIZE[] ;
+    static const char KEY_SONY_OBJECT_TRACKING_SUPPORTED[] ;
+    static const char KEY_SONY_SCENE_DETECTION_SUPPORTED[] ;
+    static const char KEY_SONY_MAX_STILL_HDR_LEVEL[] ;
+    static const char KEY_SONY_STILL_HDR_LEVEL[] ;
+    static const char KEY_SONY_BURST_SHOTS_FRAME_RATE[] ;
+    static const char KEY_SONY_SUPPORTED_BURST_SHOTS[] ;
+    static const char KEY_SONY_BURST_SHOT[] ;
+    static const char KEY_SONY_SHUTTER_SPEED_STEP[] ;
+    static const char KEY_SONY_MIN_SHUTTER_SPEED[] ;
+    static const char KEY_SONY_MAX_SHUTTER_SPEED[] ;
+    static const char KEY_SONY_SHUTTER_SPEED[] ;
+    static const char KEY_SONY_MAX_MULTI_FOCUS_RECTS[] ;
+    static const char KEY_SONY_SUPPORTED_SMILE_DETECTIONS[] ;
+    static const char KEY_SONY_SMILE_DETECTION[] ;
+    static const char KEY_SONY_SUPPORTED_FACE_DETECTIONS[] ;
+    static const char KEY_SONY_MAX_VIDEO_HDR_SIZE[] ;
+    static const char KEY_SONY_SUPPORTED_HDR_VIDEO_MODES[] ;
+    static const char KEY_SONY_HDR_VIDEO_MODE[] ;
+    static const char KEY_SONY_SUPPORTED_IS_MODES[] ;
+    static const char KEY_SONY_IS_MODE[] ;
+    static const char KEY_SONY_SUPPORTED_VS_MODES[] ;
+    static const char KEY_SONY_VS_MODE[] ;
+    static const char KEY_SONY_SUPPORTED_METERING_MODES[] ;
+    static const char KEY_SONY_SUPPORTED_AE_MODE[] ;
+    static const char KEY_SONY_SUPPORTED_ISO_MODES[] ;
+#endif   
+
+
+static const char KEY_HISTOGRAM[] ;
     static const char KEY_SUPPORTED_HISTOGRAM_MODES[] ;
     // Values for HISTOGRAM
     static const char HISTOGRAM_ENABLE[] ;
